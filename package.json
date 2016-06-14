@@ -1,0 +1,25 @@
+{
+  "name": "elm-electron",
+  "version": "1.0.0",
+  "description": "Elm - Electron (POC)",
+  "main": "index.js",
+  "scripts": {
+    "elm": "elm make src/elm/Main.elm --output build/js/elm.js || true",
+    "js": "cp src/js/*.js build/js/",
+    "elm:watch": "chokidar 'src/elm/*.elm' -c 'npm run elm'",
+    "js:watch": "chokidar 'src/js/*.js' -c 'npm run js'",
+    "clear": "rm -rf build/",
+    "build": "mkdir build/ && mkdir build/js && npm run elm & npm run js",
+    "watch": "npm run elm:watch & npm run js:watch & wait",
+    "start": "npm run clear && npm run build"
+  },
+  "keywords": [
+    "elm",
+    "electron",
+    "poc",
+    "fp",
+    "js"
+  ],
+  "author": "Julian Didier",
+  "license": "BSD3"
+}
