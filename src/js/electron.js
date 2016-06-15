@@ -1,3 +1,6 @@
+/**
+ * See ezekeal Gist : https://gist.github.com/ezekeal/18717fda53aa1ed63fbf#file-main-js
+ */
 'use strict'
 
 const app = electron.app;
