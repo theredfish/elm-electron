@@ -4,12 +4,15 @@
   "description": "Elm - Electron (POC)",
   "main": "index.js",
   "scripts": {
-    "elm": "elm make src/elm/Main.elm --output build/js/elm.js || true",
-    "js": "cp src/js/*.js build/js/",
+    "elm:make": "elm make src/elm/Main.elm --output build/js/elm.js || true",
+    "copy:js": "cp src/js/*.js build/js/",
+    "copy:views": "cp src/views/*.html build/",
+    "copy": "npm run copy:js & npm run copy:views",
     "elm:watch": "chokidar 'src/elm/*.elm' -c 'npm run elm'",
     "js:watch": "chokidar 'src/js/*.js' -c 'npm run js'",
+    "views:watch": "chokidar 'src/views/*.html' -c 'npm run views'",
     "clear": "rm -rf build/",
-    "build": "mkdir build/ && mkdir build/js && npm run elm & npm run js",
+    "build": "mkdir build/ && mkdir build/js/ && npm run elm:make & npm run copy",
     "watch": "npm run elm:watch & npm run js:watch & wait",
     "start": "npm run clear && npm run build"
   },
