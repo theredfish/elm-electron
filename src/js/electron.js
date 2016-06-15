@@ -11,7 +11,7 @@ let mainWindow;
 
 app.on('ready', createWindow);
 
-// Function to create app window
+// function to create app window
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1024,
@@ -19,10 +19,24 @@ function createWindow() {
 	});
 
 	// display index.html
-	mainWindow.loadURL('file://${ __dirname }/index.html');
+	mainWindow.loadURL('file://' + __dirname + '/../index.html');
 
 	// dev tools to have console errors
-	
+	mainWindow.webContents.openDevTools();
+
+	mainWindow.on('closed', function () {
+		mainWindow = null;
+	});
+
+	// when you close all the windows on a non-mac OS it quits the app
+	app.on('window-all-closed', () => {
+		if (process.platform !== 'darwin') { app.quit() }
+	})
+
+	// if there is no mainWindow it creates one (like when you click the dock icon)
+	app.on('activate', () => {
+		if (mainWindow === null) { createWindow() }
+	});
 }
 
 
